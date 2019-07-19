@@ -41,37 +41,36 @@ class FindFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //AndroidSupportInjection.inject(this@FindFragment)
+        AndroidSupportInjection.inject(this@FindFragment)
 
-//        initializeRecycler()
-//
-//        trackViewModel = ViewModelProviders.of(this, trackViewModelFactory).get(
-//                TrackViewModel::class.java)
-//
-//        progressBar.visibility = View.VISIBLE
-//        loadData()
-//
-//        trackViewModel.tracksResult.observe(this,
-//                Observer<List<Track>> {
-//                    if (it != null) {
-//                        val position = cryptocurrenciesAdapter.itemCount
-//                        cryptocurrenciesAdapter.addTracks(it)
-//                        recycler.adapter = cryptocurrenciesAdapter
-//                        recycler.scrollToPosition(position - Constants.LIST_SCROLLING)
-//                    }
-//                })
-//
-//        trackViewModel.tracksError.observe(this, Observer<String> {
-//            if (it != null) {
-//                context?.toast(resources.getString(R.string.track_error_message) + it)
-//            }
-//        })
-//
-//        trackViewModel.tracksLoader.observe(this, Observer<Boolean> {
-//            if (it == false) progressBar.visibility = View.GONE
-//        })
+        initializeRecycler()
+
+        trackViewModel = ViewModelProviders.of(this, trackViewModelFactory).get(
+                TrackViewModel::class.java)
+
+        progressBar.visibility = View.VISIBLE
+        loadData()
+
+        trackViewModel.tracksResult.observe(this,
+                Observer<List<Track>> {
+                    if (it != null) {
+                        val position = cryptocurrenciesAdapter.itemCount
+                        cryptocurrenciesAdapter.addTracks(it)
+                        recycler.adapter = cryptocurrenciesAdapter
+                        recycler.scrollToPosition(position - Constants.LIST_SCROLLING)
+                    }
+                })
+
+        trackViewModel.tracksError.observe(this, Observer<String> {
+            if (it != null) {
+                context?.toast(resources.getString(R.string.track_error_message) + it)
+            }
+        })
+
+        trackViewModel.tracksLoader.observe(this, Observer<Boolean> {
+            if (it == false) progressBar.visibility = View.GONE
+        })
     }
-
 
     private fun initializeRecycler() {
         val gridLayoutManager = GridLayoutManager(context, 1)
@@ -89,7 +88,7 @@ class FindFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        //trackViewModel.disposeElements()
+        trackViewModel.disposeElements()
         super.onDestroy()
     }
 

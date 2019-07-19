@@ -10,7 +10,8 @@ import dagger.android.ContributesAndroidInjector
  */
 @Module
 abstract class BuildersModule {
-//    @ContributesAndroidInjector
-    //abstract fun contributeTracksFindFragment(): FindFragment
-    //abstract fun contributeMainActivity(): MainActivity
+    @ContributesAndroidInjector
+    abstract fun contributeTracksFindFragment(): FindFragment
+    @ContributesAndroidInjector
+    abstract fun contributeMainActivity(): MainActivity
 }

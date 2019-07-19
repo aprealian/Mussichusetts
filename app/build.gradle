@@ -1,9 +1,10 @@
 project.ext {
     support = "1.0.0"
-    arch = "2.0.0"
+    arch = "2.2.0-alpha02"
+    room_version = "2.2.0-alpha01"
     retrofit = "2.0.2"
     constraintlayout = "2.0.0-beta2"
-    dagger_version = "2.15"
+    dagger_version = "2.21"
 }
 
 apply plugin: 'com.android.application'
@@ -48,13 +49,21 @@ dependencies {
     //implementation "androidx.appcompat:appcompat:$project.support"
     implementation "androidx.constraintlayout:constraintlayout:$project.constraintlayout"
     implementation "androidx.legacy:legacy-support-v4:$project.support"
-    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$project.arch"
     implementation "androidx.lifecycle:lifecycle-runtime:$project.arch"
     implementation "androidx.lifecycle:lifecycle-extensions:$project.arch"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$project.arch"
+    kapt "androidx.lifecycle:lifecycle-compiler:$project.arch"
+
+
+    // Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
 
     // Room dependencies
-    implementation 'androidx.room:room-runtime:2.1.0'
-    kapt 'androidx.room:room-compiler:2.1.0'
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$project.retrofit"
@@ -70,7 +79,9 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0-RC3'
 
     // Dagger
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-support:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-support:$dagger_version"
@@ -87,4 +98,5 @@ dependencies {
 
 
     testImplementation 'junit:junit:4.12'
+
 }
